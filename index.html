@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學習小幫手 使用手冊 — AI 未來學院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #09090f;
+  --surface: #111118;
+  --surface-2: #16161f;
+  --border: rgba(255,255,255,0.07);
+  --border-2: rgba(255,255,255,0.16);
+  --text: #f0f0f5;
+  --text-2: rgba(240,240,245,0.65);
+  --text-3: rgba(240,240,245,0.45);
+  --muted: rgba(240,240,245,0.45);
+  --accent: #7cffb2;
+  --accent-bg: rgba(124,255,178,0.12);
+  --line-green: #06C755;
+  --line-chat-bg: #7c97c0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: opacity 0.2s ease; }
+a:hover { opacity: 0.75; }
+
+/* NAVBAR */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 68px;
+  display: flex; align-items: center;
+  padding: 0 7%;
+  background: rgba(9,9,15,0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav .logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.3rem;
+  color: var(--text); text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.site-nav .logo span { color: var(--accent); }
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex; gap: 36px;
+  list-style: none;
+}
+.site-nav .nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--text-2); text-decoration: none;
+}
+.site-nav .nav-links a:hover { color: var(--accent); opacity: 1; }
+@media (max-width: 720px) {
+  .site-nav { height: 58px; padding: 0 5%; }
+  .site-nav .logo { font-size: 1.15rem; }
+  .site-nav .nav-links { display: none; }
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 7%; }
+@media (max-width: 720px) { .container { padding: 0 5%; } }
+
+/* HERO */
+.hero {
+  padding: 96px 0 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 64px; padding: 64px 0 80px; text-align: center; }
+}
+.hero-text .eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-text h1 {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: clamp(40px, 6.5vw, 68px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+.hero-text h1 .highlight {
+  background: linear-gradient(180deg, transparent 65%, var(--accent-bg) 65%);
+  padding: 0 4px;
+}
+.hero-text .dek {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: clamp(17px, 1.6vw, 19px);
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 36px;
+  max-width: 460px;
+}
+@media (max-width: 900px) { .hero-text .dek { margin: 0 auto 36px; } }
+
+/* LINE chat */
+.line-mockup {
+  background: linear-gradient(180deg, var(--line-chat-bg) 0%, #6a85ad 100%);
+  border-radius: 28px; padding: 18px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  max-width: 440px; margin: 0 auto;
+}
+.line-header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  margin-bottom: 18px;
+}
+.line-avatar {
+  width: 44px; height: 44px;
+  background: var(--line-green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 16px;
+  color: white; flex-shrink: 0;
+}
+.line-name { color: white; font-weight: 700; font-size: 15px; font-family: 'Noto Sans TC', sans-serif; }
+.line-name small {
+  display: block;
+  font-size: 12px; font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+}
+.line-msg { display: flex; margin-bottom: 14px; }
+.line-msg.bot { justify-content: flex-start; }
+.line-msg.you { justify-content: flex-end; }
+.line-bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 15px; line-height: 1.65;
+  color: #1e1e1e; background: white;
+  word-break: break-word;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.line-msg.bot .line-bubble { border-bottom-left-radius: 4px; }
+.line-msg.you .line-bubble {
+  background: var(--line-green); color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* SECTION */
+section { padding: 120px 0; border-top: 1px solid var(--border); }
+.section-head { margin-bottom: 64px; max-width: 760px; }
+.section-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.section-head h2 {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.section-head .desc {
+  font-size: clamp(16px, 1.6vw, 19px);
+  color: var(--text-2);
+  line-height: 1.75;
+  max-width: 720px;
+}
+
+/* CAPABILITY */
+.cap-list-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.cap-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 36px;
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.cap-row:last-child { border-bottom: none; }
+@media (max-width: 720px) {
+  .cap-row { grid-template-columns: 1fr; gap: 10px; padding: 24px 28px; }
+}
+.cap-row .cap-title {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.005em;
+}
+.cap-row .cap-detail {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+/* SCENARIO */
+.scenarios { display: grid; gap: 32px; }
+.scenario {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: start;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.scenario:hover { transform: translateY(-4px); border-color: var(--border-2); }
+@media (max-width: 900px) {
+  .scenario { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+}
+.scn-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 0.28em;
+  color: var(--accent); text-transform: uppercase;
+  font-weight: 500; margin-bottom: 16px;
+}
+.scenario h3 {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: 26px; font-weight: 800;
+  margin-bottom: 16px; line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.scn-desc {
+  font-size: 16px; color: var(--text-2);
+  line-height: 1.75; margin-bottom: 28px;
+}
+
+.prompt-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  position: relative;
+}
+.prompt-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 12px; font-weight: 500;
+}
+.prompt-text {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: 15px; line-height: 1.85;
+  color: var(--text); white-space: pre-line;
+}
+.copy-btn {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--border-2);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.copy-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+/* mini LINE chat */
+.mini-chat {
+  background: linear-gradient(180deg, var(--line-chat-bg) 0%, #6a85ad 100%);
+  border-radius: 18px; padding: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.mini-chat .mini-header {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  margin-bottom: 14px;
+}
+.mini-chat .mini-avatar {
+  width: 32px; height: 32px;
+  background: var(--line-green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 13px;
+  color: white;
+}
+.mini-chat .mini-name { color: white; font-weight: 700; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; }
+.mini-chat .line-bubble { font-size: 14px; padding: 10px 14px; }
+
+/* COLLAPSIBLE (details) */
+details.collapsible {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+details.collapsible[open] { border-color: var(--border-2); }
+details.collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  user-select: none;
+}
+details.collapsible > summary::-webkit-details-marker { display: none; }
+details.collapsible > summary .sum-title {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.005em;
+}
+details.collapsible > summary .sum-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: var(--text-2);
+  font-weight: 300;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+details.collapsible[open] > summary .sum-icon { transform: rotate(45deg); }
+details.collapsible > .sum-body {
+  padding: 8px 36px 32px;
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.85;
+}
+
+/* TEMPLATE GRID */
+.tpl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 780px) { .tpl-grid { grid-template-columns: 1fr; } }
+.tpl-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tpl-item:hover { transform: translateY(-4px); border-color: var(--border-2); }
+.tpl-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; color: var(--accent);
+  letter-spacing: 0.25em; font-weight: 500;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.tpl-item h4 {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: 20px; font-weight: 800;
+  margin-bottom: 20px; color: var(--text);
+  letter-spacing: -0.005em;
+}
+.tpl-code {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: 14.5px; line-height: 1.85;
+  color: var(--text);
+  background: var(--surface-2);
+  padding: 16px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  white-space: pre-line;
+}
+
+/* ELSEWHERE TABLE */
+.elsewhere-table {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.elsewhere-row {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 32px;
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.elsewhere-row:last-child { border-bottom: none; }
+@media (max-width: 640px) {
+  .elsewhere-row { grid-template-columns: 1fr; gap: 12px; padding: 24px 28px; }
+}
+.elsewhere-row .what { font-size: 17px; color: var(--text); line-height: 1.5; }
+.elsewhere-row .what strong {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-weight: 800;
+  display: block; margin-bottom: 6px;
+}
+.elsewhere-row .what .example {
+  display: block; font-size: 14px;
+  color: var(--text-3); margin-top: 6px;
+}
+.elsewhere-row .who {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--accent); font-weight: 600;
+  text-align: right;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.elsewhere-row .who a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(124,255,178,0.4);
+  text-underline-offset: 3px;
+}
+.elsewhere-row .who a:hover { text-decoration-color: var(--accent); opacity: 1; }
+@media (max-width: 640px) { .elsewhere-row .who { text-align: left; } }
+
+/* CLOSING */
+.closing { padding: 120px 0; text-align: center; border-top: 1px solid var(--border); }
+.closing-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; letter-spacing: 0.35em;
+  color: var(--accent);
+  margin-bottom: 24px;
+  text-transform: uppercase; font-weight: 500;
+}
+.closing h2 {
+  font-family: 'Syne', 'Noto Sans TC', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900; line-height: 1.2;
+  letter-spacing: -0.015em; margin-bottom: 24px;
+}
+.closing h2 .highlight {
+  background: linear-gradient(180deg, transparent 65%, var(--accent-bg) 65%);
+  padding: 0 6px;
+}
+.closing p {
+  font-size: clamp(16px, 1.7vw, 19px);
+  color: var(--text-2);
+  margin: 0 auto 40px;
+  max-width: 540px;
+  line-height: 1.75;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: var(--bg);
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(124,255,178,0.3);
+  opacity: 1;
+}
+.cta-btn::after { content: '→'; font-size: 20px; }
+
+/* FOOTER */
+.footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
+.footer .footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; color: var(--text);
+  font-weight: 800; margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.footer .footer-brand span { color: var(--accent); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 36px;
+  left: 50%; transform: translateX(-50%) translateY(120px);
+  background: var(--accent); color: var(--bg);
+  padding: 14px 28px; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: transform 0.3s ease;
+  z-index: 1000; text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(124,255,178,0.4);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="#" class="logo">AI 未來學院<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#what">介紹</a></li>
+    <li><a href="#capabilities">能做什麼</a></li>
+    <li><a href="#examples">怎麼問</a></li>
+    <li><a href="#templates">提問樣板</a></li>
+    <li><a href="#elsewhere">找誰處理</a></li>
+    <li><a href="#faq">常見問題</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">LINE Bot · 學員指南</div>
+      <h1>學習小幫手<br><span class="highlight">使用手冊</span></h1>
+      <p class="dek">陪你走完學習路的 LINE 引導者。五分鐘看完，你就會用。</p>
+    </div>
+
+    <div class="line-mockup">
+      <div class="line-header">
+        <div class="line-avatar">AI</div>
+        <div class="line-name">
+          AI 未來學院 學習小幫手
+          <small>線上 · 24 小時隨時可問</small>
+        </div>
+      </div>
+      <div class="line-msg bot">
+        <div class="line-bubble">歡迎來到 AI 未來學院～<br>方便先給我你註冊的 email 嗎？我看一下你的學習資源，就能直接幫你規劃方向。</div>
+      </div>
+      <div class="line-msg you">
+        <div class="line-bubble">james@example.com</div>
+      </div>
+      <div class="line-msg bot">
+        <div class="line-bubble">找到你了，James 你好！<br>跟我聊的小撇步：講「你是誰 + 想做什麼 + 卡在哪」，我會回得最準。</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 介紹 -->
+  <section id="what">
+    <div class="section-head">
+      <div class="section-eyebrow">01 · 介紹</div>
+      <h2>它是什麼</h2>
+      <p class="desc">它是學院的學習引導者，不是替你做事的工具，也不是回答任何問題的通用聊天機器人。它把你接到對的課程、對的工具、對的資源 — 不會直接給你答案，但它會告訴你答案在哪一集、哪一章。讓你自己學會，是學院長期相信的事。</p>
+    </div>
+  </section>
+
+  <!-- 02 能做什麼 -->
+  <section id="capabilities">
+    <div class="section-head">
+      <div class="section-eyebrow">02 · 能做什麼</div>
+      <h2>它可以幫你做這些事</h2>
+      <p class="desc">六件事是它的專長。其他不在這個清單裡的（學費、約老師、改個資等），它幫不上 — 第 05 段「找誰處理」會告訴你該找誰。</p>
+    </div>
+
+    <div class="cap-list-block">
+      <div class="cap-row">
+        <div class="cap-title">找對應課程</div>
+        <div class="cap-detail">幫你找學院內哪一集、哪一章在教某個主題，給直達連結。不會推薦外部影片。</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-title">講解概念</div>
+        <div class="cap-detail">用白話解釋專有名詞，但會告訴你哪一集教得更完整，鼓勵你看完整課程加深。</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-title">推薦工具</div>
+        <div class="cap-detail">從學院策展過的工具庫推薦 1–3 個適合的 AI 工具，不導去外部不熟悉的服務。</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-title">看圖回答</div>
+        <div class="cap-detail">你傳的截圖、錯誤訊息、做出的成品它都看得到並回答。建議先用文字描述問題，再附圖片輔助 — 不要只丟一張圖讓 AI 猜。</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-title">查最近文章</div>
+        <div class="cap-detail">問它「最近有發 X 主題的文章嗎」，它從最近 30 篇學院文章內找。</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-title">查學習歷程</div>
+        <div class="cap-detail">綁定 email 後，它知道你的諮詢紀錄、目前能力等級、業師建議的方向。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 對話示範（原 04，往前搬） -->
+  <section id="examples">
+    <div class="section-head">
+      <div class="section-eyebrow">03 · 對話示範</div>
+      <h2>四個常見情境</h2>
+      <p class="desc">下面四個例子，左邊是情境介紹 + 提問樣板，右邊是你會在 LINE 看到的實際對話樣子。點「複製」直接拿樣板來用。</p>
+    </div>
+
+    <div class="scenarios">
+
+      <!-- 情境 1 -->
+      <div class="scenario">
+        <div>
+          <div class="scn-num">情境 一</div>
+          <h3>想知道學院有沒有教某題</h3>
+          <p class="scn-desc">你想找一個特定主題，看學院內有沒有相關內容、該從哪集開始。把「想學的原因」跟「已有基礎」一起寫，它推得才精準。</p>
+          <div class="prompt-card">
+            <button class="copy-btn" onclick="copyText(this)">複製</button>
+            <div class="prompt-label">提問樣板</div>
+            <div class="prompt-text">我想學：[主題]
+我之所以想學是因為：[實際應用 / 想解決什麼]
+我目前已經會：[已有的基礎]
+學院有哪幾集在教？推薦我從哪個開始？</div>
+          </div>
+        </div>
+        <div class="mini-chat">
+          <div class="mini-header">
+            <div class="mini-avatar">AI</div>
+            <div class="mini-name">學習小幫手</div>
+          </div>
+          <div class="line-msg you">
+            <div class="line-bubble">我想學：n8n 自動化。<br>之所以想學：把每週幫客戶整理名片的時間從 3 小時砍到 30 分。<br>已經會：基本的 Excel + 簡單 Zapier。<br>學院有哪幾集在教？</div>
+          </div>
+          <div class="line-msg bot">
+            <div class="line-bubble">你的場景很適合直接看「n8n 名片管家」（4 集），完成後就有現成名片自動入庫流程，跟你的需求對到。如果還想學工作流整合更深，再進「n8n 高效自動化」。要列每集內容嗎？</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 情境 2 -->
+      <div class="scenario">
+        <div>
+          <div class="scn-num">情境 二</div>
+          <h3>剛加入不知道從哪開始</h3>
+          <p class="scn-desc">你還沒決定該先看哪一支課。背景、目標、現有基礎、可投入時間都寫清楚，它才能規劃符合你節奏的順序。</p>
+          <div class="prompt-card">
+            <button class="copy-btn" onclick="copyText(this)">複製</button>
+            <div class="prompt-label">提問樣板</div>
+            <div class="prompt-text">我的背景：[現在職業 + 公司性質]
+我想 6 個月後做到：[具體可量化的目標]
+我現在會用的 AI 工具：[列舉]
+我每週可學的時間：[小時數]
+從哪堂課開始最合適？</div>
+          </div>
+        </div>
+        <div class="mini-chat">
+          <div class="mini-header">
+            <div class="mini-avatar">AI</div>
+            <div class="mini-name">學習小幫手</div>
+          </div>
+          <div class="line-msg you">
+            <div class="line-bubble">背景：行銷企劃，中小企業 30 人。<br>6 個月後想做到：每月幫公司產 20 篇社群內容、品質不掉。<br>會的工具：ChatGPT 偶爾用。<br>每週可學：5 小時。<br>從哪堂開始？</div>
+          </div>
+          <div class="line-msg bot">
+            <div class="line-bubble">先從「Claude 實戰」前 3 集打底，把對話跟 prompt 邏輯練熟（約 2-3 週）。穩了之後接「Vibe Coding」第 1 集做出第一個小成品，給你信心。月底再聊一次，我幫你看是不是要加進 n8n。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 情境 3 描述四元素 -->
+      <div class="scenario">
+        <div>
+          <div class="scn-num">情境 三</div>
+          <h3>卡關時 — 用「描述四元素」</h3>
+          <p class="scn-desc">學生最常踩的坑不是 AI 不夠強，而是「不會描述問題」。把下面 4 個欄位填清楚 — 想做、做了、期待、實際得到 — AI 才能精準幫你定位。</p>
+          <div class="prompt-card">
+            <button class="copy-btn" onclick="copyText(this)">複製</button>
+            <div class="prompt-label">提問樣板（描述四元素）</div>
+            <div class="prompt-text">我想做：[想達成什麼具體結果]
+我做了：[實際步驟 + 用了哪些工具]
+我期待：[原本以為會看到什麼]
+實際得到：[真正發生的狀況 / 錯誤訊息]</div>
+          </div>
+        </div>
+        <div class="mini-chat">
+          <div class="mini-header">
+            <div class="mini-avatar">AI</div>
+            <div class="mini-name">學習小幫手</div>
+          </div>
+          <div class="line-msg you">
+            <div class="line-bubble">我想做：把 Vibe Coding 第三集的網站部署上線。<br><br>我做了：照影片把 code 推到 GitHub，Zeabur 連 repo 按部署。<br><br>我期待：跟影片一樣顯示首頁。<br><br>實際得到：頁面跑出來但空白，console 顯示「Module not found: react-router」。</div>
+          </div>
+          <div class="line-msg bot">
+            <div class="line-bubble">描述很清楚，問題定位很快 — 你少裝 react-router。影片裡有提到那一步用 npm install react-router-dom，你可能跳過了。在 GitHub repo 跑一次 npm install react-router-dom，commit 推上去 Zeabur 會自動重 deploy。試完跟我說結果。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 情境 4 -->
+      <div class="scenario">
+        <div>
+          <div class="scn-num">情境 四</div>
+          <h3>想知道自己的學習進度</h3>
+          <p class="scn-desc">你想知道老師上次怎麼評估你、下次什麼時候諮詢。直接打就好，它會去查你的歷程。</p>
+          <div class="prompt-card">
+            <button class="copy-btn" onclick="copyText(this)">複製</button>
+            <div class="prompt-label">提問樣板</div>
+            <div class="prompt-text">查我的學習歷程 — 上次諮詢評估、下次諮詢時間、老師建議方向。</div>
+          </div>
+        </div>
+        <div class="mini-chat">
+          <div class="mini-header">
+            <div class="mini-avatar">AI</div>
+            <div class="mini-name">學習小幫手</div>
+          </div>
+          <div class="line-msg you">
+            <div class="line-bubble">查我的學習歷程</div>
+          </div>
+          <div class="line-msg bot">
+            <div class="line-bubble">查到了。上次首次諮詢業師評估你在第二層，建議的方向是先把工具熟練。下次後續諮詢的時間還沒約，要約請聯繫助教。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04 提問樣板 — 折疊 -->
+  <section id="templates">
+    <div class="section-head">
+      <div class="section-eyebrow">04 · 提問樣板</div>
+      <h2>十個直接複製的樣板</h2>
+      <p class="desc">不知道怎麼開口時，從這十個樣板挑一個。多行填空版本是設計給 AI 容易理解的格式，把方括號內換成你的內容，貼到 LINE 就能用。點任一格自動複製。</p>
+    </div>
+
+    <div class="tpl-grid">
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 01</div>
+        <h4>找該看哪一集</h4>
+        <div class="tpl-code">我想學：[主題]
+我之所以想學是因為：[實際應用]
+我目前已經會：[已有基礎]
+學院有哪幾集在教？推薦從哪開始？</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 02</div>
+        <h4>不知道從哪開始</h4>
+        <div class="tpl-code">我的背景：[職業 + 公司性質]
+我想 6 個月後做到：[具體可量化目標]
+我會的 AI 工具：[列舉]
+我每週可學時間：[小時]
+從哪堂課開始最合適？</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 03</div>
+        <h4>卡關時 — 描述四元素</h4>
+        <div class="tpl-code">我想做：[具體結果]
+我做了：[步驟 + 工具]
+我期待：[原以為的結果]
+實際得到：[真實發生的]</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 04</div>
+        <h4>對比兩個工具</h4>
+        <div class="tpl-code">我要做：[具體任務 + 場景]
+我比較重視：[速度 / 品質 / 學習成本]
+我的技術背景：[會 / 不會 code]
+[工具 A] vs [工具 B] 哪個適合？差別在哪？</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 05</div>
+        <h4>看完課想知道下一步</h4>
+        <div class="tpl-code">我已經看完：[課程 / 章節]
+我目前掌握到：[做得到什麼具體事]
+還不太會的：[具體卡點]
+接下來該學什麼比較自然？</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 06</div>
+        <h4>查工具庫</h4>
+        <div class="tpl-code">我要做：[具體任務 + 用途]
+我的預算：[免費 / 低 / 沒限制]
+我會的技術：[會 / 不會 code]
+學院工具庫裡有適合的嗎？</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 07</div>
+        <h4>查最近的學院文章</h4>
+        <div class="tpl-code">最近學院有發 [主題] 的文章嗎？給我連結。</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 08</div>
+        <h4>看不懂某概念</h4>
+        <div class="tpl-code">我聽到「[概念]」這個詞，
+我目前的理解是：[你的猜測]
+我搞不懂的點是：[具體哪部分]
+用白話講解，並告訴我學院哪集有教。</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 09</div>
+        <h4>查學習歷程</h4>
+        <div class="tpl-code">查我的學習歷程 — 上次諮詢評估、下次諮詢時間、老師建議方向。</div>
+      </div>
+
+      <div class="tpl-item" onclick="copyTpl(this)">
+        <div class="tpl-num">樣板 10</div>
+        <h4>結束今天的學習</h4>
+        <div class="tpl-code">我今天到這裡，幫我總結今天聊了什麼，下次該繼續做什麼？</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 05 找誰處理 -->
+  <section id="elsewhere">
+    <div class="section-head">
+      <div class="section-eyebrow">05 · 找誰處理</div>
+      <h2>這些事不歸它管</h2>
+      <p class="desc">下面這些它會婉拒。不是不友善，而是有更對的人能幫你 — 學院助教、業師、或是專業人士。</p>
+    </div>
+
+    <div class="elsewhere-table">
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>學費、方案、升降級</strong>
+          <span class="example">「未來計劃多少錢？」「我要升級方案」「退費怎麼辦？」</span>
+        </div>
+        <div class="who"><a href="https://lin.ee/WXVdzTa" target="_blank">學院助教</a></div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>諮詢時間、老師更動</strong>
+          <span class="example">「我下次諮詢能改時間嗎？」「我想換業師」</span>
+        </div>
+        <div class="who"><a href="https://lin.ee/WXVdzTa" target="_blank">學院助教</a></div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>帳號、個資、合約</strong>
+          <span class="example">「帳號登不進去」「改我綁定 email」「合約何時到期？」</span>
+        </div>
+        <div class="who"><a href="https://lin.ee/WXVdzTa" target="_blank">學院助教</a></div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>第一次體質健檢、後續諮詢</strong>
+          <span class="example">這是業師的工作 — 一對一面談 + 寫診斷報告</span>
+        </div>
+        <div class="who">業師</div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>跟學院、AI 無關的事</strong>
+          <span class="example">「幫我寫情書」「今天天氣」「股票買哪支？」</span>
+        </div>
+        <div class="who">用通用 AI</div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>醫療、法律、投資建議</strong>
+          <span class="example">「這合約能簽嗎？」「我這症狀是什麼？」</span>
+        </div>
+        <div class="who">找專業人士</div>
+      </div>
+
+      <div class="elsewhere-row">
+        <div class="what"><strong>直接給答案、替你做作業</strong>
+          <span class="example">「直接寫一段給我」「我作業答案是什麼？」 — 它的設計是引導你回課程自己學</span>
+        </div>
+        <div class="who">回到課程</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 FAQ — 折疊式，圖片提問移到第 1 題 -->
+  <section id="faq">
+    <div class="section-head">
+      <div class="section-eyebrow">06 · 常見問題</div>
+      <h2>關於它，你可能想問</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="collapsible" open>
+        <summary>
+          <span class="sum-title">Q1. 我想傳圖片給它，要注意什麼？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">
+          <p style="margin-bottom: 14px;">先用文字把問題講清楚，再附上圖片輔助 — 不要只丟一張圖讓它猜你想問什麼。它能看圖，但不會通靈。</p>
+          <p style="margin-bottom: 14px;">圖片請用<strong style="color: var(--text); font-weight: 700;">電腦截圖</strong>（Mac 按 Shift + Cmd + 4、Windows 按 PrintScreen）或<strong style="color: var(--text); font-weight: 700;">直接存原始的錯誤訊息圖檔</strong>。</p>
+          <p>不要用手機對著電腦螢幕翻拍 — 這種照片會拍到反光、其他無關視窗、鍵盤、桌面雜物，畫面也容易糊掉，會嚴重影響它判斷你的問題。</p>
+        </div>
+      </details>
+
+      <details class="collapsible">
+        <summary>
+          <span class="sum-title">Q2. 它會直接給我答案嗎？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">不會。它的角色是引導你回到課程自己學會。問它「文案要怎麼寫？」它會告訴你哪一集教得完整，你看完還不懂再回來問細節。</div>
+      </details>
+
+      <details class="collapsible">
+        <summary>
+          <span class="sum-title">Q3. 它怎麼認得我？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">第一次加 LINE 它會問你 email。給完之後它就知道你的姓名、學員身份、諮詢紀錄、過去跟它聊過什麼。</div>
+      </details>
+
+      <details class="collapsible">
+        <summary>
+          <span class="sum-title">Q4. 用它要錢嗎？有次數限制？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">在你的方案內沒有次數限制，LINE 開著就能用。</div>
+      </details>
+
+      <details class="collapsible">
+        <summary>
+          <span class="sum-title">Q5. 它跟 ChatGPT 哪個準？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">課程內題目它比較準，因為它認識學院的內容。一般通用 AI 題目用 ChatGPT 或 Claude 都行。它的價值在「把你接到對的學院資源」，不是替代通用 AI。</div>
+      </details>
+
+      <details class="collapsible">
+        <summary>
+          <span class="sum-title">Q6. 我換 email 怎麼辦？</span>
+          <span class="sum-icon">+</span>
+        </summary>
+        <div class="sum-body">找<a href="https://lin.ee/WXVdzTa" target="_blank">學院助教</a>幫你改綁定的 email，它不能自己改（避免身份冒用）。改完它會自動認你新 email。</div>
+      </details>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="container">
+    <div class="closing-eyebrow">準備好了嗎</div>
+    <h2>看完手冊，<br>就<span class="highlight">去輸入你的 Email</span> 吧。</h2>
+    <p>打開 LINE 跟它說 Hi，它會問你 email，給它就好。<br>之後你就可以挑提問樣板，把方括號換成你的內容，貼進去開始學。</p>
+    <a href="https://lin.ee/n7KLyNF" class="cta-btn">去輸入你的 Email 吧</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">AI 未來學院<span>.</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">已複製到剪貼簿</div>
+
+<script>
+function copyText(btn) {
+  const text = btn.parentElement.querySelector('.prompt-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(showToast);
+}
+function copyTpl(el) {
+  const text = el.querySelector('.tpl-code').textContent.trim();
+  navigator.clipboard.writeText(text).then(showToast);
+}
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1500);
+}
+</script>
+
+</body>
+</html>
