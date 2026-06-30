@@ -323,14 +323,20 @@ section { padding: 72px 0; border-top: 1px solid var(--border); }
 .mini-chat .mini-name { color: white; font-weight: 700; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; }
 .mini-chat .line-bubble { font-size: 14px; padding: 10px 14px; }
 
-/* LINE 圖片 attachment 模擬 */
+/* LINE 圖片 attachment 模擬（獨立 you-side bubble） */
+.line-msg.you .line-attach {
+  max-width: 78%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 .line-attach {
   max-width: 78%;
   border-radius: 14px;
   overflow: hidden;
   background: white;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  margin-bottom: 6px;
 }
 .line-attach-img {
   background: #1a1a1f;
@@ -719,12 +725,12 @@ details.collapsible > .sum-body {
           <p class="scn-desc">看到錯誤訊息、做出來的成品想 review、課程畫面看不懂，直接傳圖最快。把文字描述跟圖片一起傳，它就能精準回應。</p>
           <div class="prompt-card">
             <button class="copy-btn" onclick="copyText(this)">複製</button>
-            <div class="prompt-label">提問樣板</div>
+            <div class="prompt-label">提問樣板（先文字 → 再傳圖）</div>
             <div class="prompt-text">我在做：[什麼事 / 跟著哪一集]
 出現這個狀況：[簡單描述]
-（附上截圖）</div>
+接下來我傳一張截圖給你看。</div>
           </div>
-          <p style="margin-top: 16px; font-size: 13px; color: var(--text-3); line-height: 1.7;">圖片用<strong style="color: var(--text-2);">電腦截圖</strong>（Mac 按 Shift + Cmd + 4、Windows 按 PrintScreen）效果最好。手機翻拍電腦螢幕容易拍到反光跟桌面雜物，畫面也比較糊。</p>
+          <p style="margin-top: 16px; font-size: 13px; color: var(--text-3); line-height: 1.7;">先用文字把脈絡講清楚、預告會附圖，再把圖傳出去 — 這樣 AI 收到圖時已經知道你在問什麼，回得更準。<br><br>圖片用<strong style="color: var(--text-2);">電腦截圖</strong>（Mac 按 Shift + Cmd + 4、Windows 按 PrintScreen）效果最好。手機翻拍電腦螢幕容易拍到反光跟桌面雜物，畫面也比較糊。</p>
         </div>
         <div class="mini-chat">
           <div class="mini-header">
@@ -732,9 +738,11 @@ details.collapsible > .sum-body {
             <div class="mini-name">學習小幫手</div>
           </div>
           <div class="line-msg you">
-            <div style="display: flex; flex-direction: column; align-items: flex-end; max-width: 80%;">
-              <div class="line-attach">
-                <div class="line-attach-img">
+            <div class="line-bubble">我在做 Vibe Coding 第三集，build 一直失敗 console 跳一段紅字看不懂。<br><br>接下來我傳一張截圖給你看。</div>
+          </div>
+          <div class="line-msg you">
+            <div class="line-attach">
+              <div class="line-attach-img">
 <span class="dim">$ npm run build</span><br>
 <span class="dim">&gt; vite build</span><br>
 <br>
@@ -746,13 +754,11 @@ details.collapsible > .sum-body {
 <span class="err">"src/App.tsx".</span><br>
 <br>
 <span class="dim">Module not found.</span>
-                </div>
-                <div class="line-attach-meta">
-                  <span>📷</span>
-                  <span>螢幕截圖.png</span>
-                </div>
               </div>
-              <div class="line-bubble" style="margin-top: 2px;">我在做 Vibe Coding 第三集，build 一直失敗，這是錯誤訊息。</div>
+              <div class="line-attach-meta">
+                <span>📷</span>
+                <span>螢幕截圖.png</span>
+              </div>
             </div>
           </div>
           <div class="line-msg bot">
