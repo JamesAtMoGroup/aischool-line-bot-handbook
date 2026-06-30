@@ -323,6 +323,38 @@ section { padding: 72px 0; border-top: 1px solid var(--border); }
 .mini-chat .mini-name { color: white; font-weight: 700; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; }
 .mini-chat .line-bubble { font-size: 14px; padding: 10px 14px; }
 
+/* LINE 圖片 attachment 模擬 */
+.line-attach {
+  max-width: 78%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-bottom: 6px;
+}
+.line-attach-img {
+  background: #1a1a1f;
+  padding: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #e0e0e8;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.line-attach-img .err { color: #ff6b6b; }
+.line-attach-img .ok { color: #7cffb2; }
+.line-attach-img .dim { color: rgba(255,255,255,0.4); }
+.line-attach-meta {
+  padding: 8px 12px;
+  background: white;
+  color: #999;
+  font-size: 11px;
+  font-family: 'Noto Sans TC', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 /* COLLAPSIBLE (details) */
 details.collapsible {
   background: var(--surface);
@@ -585,8 +617,8 @@ details.collapsible > .sum-body {
   <section id="examples">
     <div class="section-head">
       <div class="section-eyebrow">02 · 對話示範</div>
-      <h2>四個常見情境</h2>
-      <p class="desc">下面四個例子，左邊是情境介紹 + 提問樣板，右邊是你會在 LINE 看到的實際對話樣子。點「複製」直接拿樣板來用。</p>
+      <h2>五個常見情境</h2>
+      <p class="desc">下面五個例子，左邊是情境介紹 + 提問樣板，右邊是你會在 LINE 看到的實際對話樣子。點「複製」直接拿樣板來用。</p>
     </div>
 
     <div class="scenarios">
@@ -679,10 +711,60 @@ details.collapsible > .sum-body {
         </div>
       </div>
 
-      <!-- 情境 4 -->
+      <!-- 情境 4 — 傳圖片問問題 -->
       <div class="scenario">
         <div>
           <div class="scn-num">情境 四</div>
+          <h3>傳圖片問問題（高頻使用）</h3>
+          <p class="scn-desc">看到錯誤訊息、做出來的成品想 review、課程畫面看不懂，直接傳圖最快。把文字描述跟圖片一起傳，它就能精準回應。</p>
+          <div class="prompt-card">
+            <button class="copy-btn" onclick="copyText(this)">複製</button>
+            <div class="prompt-label">提問樣板</div>
+            <div class="prompt-text">我在做：[什麼事 / 跟著哪一集]
+出現這個狀況：[簡單描述]
+（附上截圖）</div>
+          </div>
+          <p style="margin-top: 16px; font-size: 13px; color: var(--text-3); line-height: 1.7;">圖片用<strong style="color: var(--text-2);">電腦截圖</strong>（Mac 按 Shift + Cmd + 4、Windows 按 PrintScreen）效果最好。手機翻拍電腦螢幕容易拍到反光跟桌面雜物，畫面也比較糊。</p>
+        </div>
+        <div class="mini-chat">
+          <div class="mini-header">
+            <div class="mini-avatar">AI</div>
+            <div class="mini-name">學習小幫手</div>
+          </div>
+          <div class="line-msg you">
+            <div style="display: flex; flex-direction: column; align-items: flex-end; max-width: 80%;">
+              <div class="line-attach">
+                <div class="line-attach-img">
+<span class="dim">$ npm run build</span><br>
+<span class="dim">&gt; vite build</span><br>
+<br>
+<span class="err">✗ Build failed in 2.4s</span><br>
+<br>
+<span class="err">[plugin:vite:import-analysis]</span><br>
+<span class="err">Failed to resolve import</span><br>
+<span class="err">"react-router" from</span><br>
+<span class="err">"src/App.tsx".</span><br>
+<br>
+<span class="dim">Module not found.</span>
+                </div>
+                <div class="line-attach-meta">
+                  <span>📷</span>
+                  <span>螢幕截圖.png</span>
+                </div>
+              </div>
+              <div class="line-bubble" style="margin-top: 2px;">我在做 Vibe Coding 第三集，build 一直失敗，這是錯誤訊息。</div>
+            </div>
+          </div>
+          <div class="line-msg bot">
+            <div class="line-bubble">看到了 — 你少裝 react-router。影片那段有提到要先跑 npm install react-router-dom，可能跳過了。<br><br>解法：在你的 repo 跑一次 npm install react-router-dom，commit 推上去 Zeabur 會自動重 build。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 情境 5 -->
+      <div class="scenario">
+        <div>
+          <div class="scn-num">情境 五</div>
           <h3>想知道自己的學習進度</h3>
           <p class="scn-desc">你想知道老師上次怎麼評估你、下次什麼時候諮詢。直接打就好，它會去查你的歷程。</p>
           <div class="prompt-card">
